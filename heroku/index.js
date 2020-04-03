@@ -12,13 +12,13 @@ var app = express();
 var xhub = require('express-x-hub');
 var textParser = bodyParser.text({
 	inflate: true,
-	type: '*/*'
+	type: 'application/json'
 });
 
 app.set('port', (process.env.PORT || 5000));
 app.listen(app.get('port'));
 
-app.use(xhub({ algorithm: 'sha1', secret: process.env.APP_SECRET }));
+//app.use(xhub({ algorithm: 'sha1', secret: process.env.APP_SECRET }));
 app.use(textParser);
 
 var token = process.env.TOKEN || 'token';
@@ -49,7 +49,7 @@ app.post('/facebook', textParser, function(req, res) {
 
   console.log('request header X-Hub-Signature validated');
   console.log('Raw body:');
-  console.log(req.body.toString());
+  console.log(req.body);
   console.log('Stringify body:');
   console.log(JSON.stringify(req.body));
   console.log('Stringify headers:');
