@@ -54,7 +54,7 @@ app.post('/facebook', function(req, res) {
   console.log('Stringify headers:');
   console.log(JSON.stringify(req.headers));
   // Process the Facebook updates here
-  received_updates.unshift(JSON.parse(req.body));
+  received_updates.unshift(req.body);
   res.sendStatus(200);
 });
 
